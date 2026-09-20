@@ -16,7 +16,6 @@ export default function FilterBar({
   return (
     <div className="filter-bar-container">
       <div className="filter-controls-grid">
-        {/* Genre Selector */}
         <div className="filter-group">
           <label htmlFor="filter-genre" className="filter-label">Genre</label>
           <div className="select-wrapper">
@@ -36,7 +35,6 @@ export default function FilterBar({
           </div>
         </div>
 
-        {/* Status Selector */}
         <div className="filter-group">
           <label htmlFor="filter-status" className="filter-label">Status</label>
           <div className="select-wrapper">
@@ -54,7 +52,6 @@ export default function FilterBar({
           </div>
         </div>
 
-        {/* Rating Filter */}
         <div className="filter-group">
           <label htmlFor="filter-rating" className="filter-label">Min Rating</label>
           <div className="select-wrapper">
@@ -74,7 +71,6 @@ export default function FilterBar({
           </div>
         </div>
 
-        {/* Sort Order */}
         <div className="filter-group">
           <label htmlFor="filter-sort" className="filter-label">Sort By</label>
           <div className="select-wrapper">
@@ -95,7 +91,6 @@ export default function FilterBar({
         </div>
       </div>
 
-      {/* Reset Filter Action */}
       {activeFilterCount > 0 && (
         <div className="active-filters-row">
           <span className="active-filter-badge">

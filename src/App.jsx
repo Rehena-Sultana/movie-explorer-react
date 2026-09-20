@@ -14,10 +14,8 @@ import { fetchAllShows, searchShows, fetchSpotlightShows } from './services/api'
 import './App.css';
 
 export default function App() {
-  // Navigation State: 'home' | 'movies' | 'favorites'
   const [activePage, setActivePage] = useState('home');
 
-  // Search & Filter States
   const [searchQuery, setSearchQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('All Genres');
@@ -25,7 +23,6 @@ export default function App() {
   const [minRating, setMinRating] = useState('All');
   const [sortBy, setSortBy] = useState('rating-desc');
 
-  // Data States
   const [allShows, setAllShows] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [spotlightShows, setSpotlightShows] = useState([]);
@@ -36,33 +33,26 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
-  // Modal State
   const [selectedMovie, setSelectedMovie] = useState(null);
-
-  // Toast State
   const [toast, setToast] = useState({ message: '', type: 'info' });
 
   const showToast = useCallback((message, type = 'info') => {
     setToast({ message, type });
   }, []);
 
-  // Favorites Hook
   const {
     favorites,
     favoritesCount,
     isFavorite,
     toggleFavorite,
-    removeFavorite,
     clearAllFavorites,
   } = useFavorites(showToast);
 
-  // Initial Load: Fetch first page of shows & spotlight
   useEffect(() => {
     let isMounted = true;
     setLoading(true);
     setError(null);
 
-    // Fetch initial shows
     fetchAllShows(0)
       .then((data) => {
         if (isMounted) {
@@ -77,7 +67,6 @@ export default function App() {
         }
       });
 
-    // Fetch spotlight shows for landing page
     fetchSpotlightShows()
       .then((data) => {
         if (isMounted) {
@@ -94,7 +83,6 @@ export default function App() {
     };
   }, []);
 
-  // Debounce search query input (300ms)
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedQuery(searchQuery);
@@ -102,7 +90,6 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  // Execute Search when debounced query changes
   useEffect(() => {
     if (!debouncedQuery.trim()) {
       setSearchResults([]);
@@ -132,7 +119,6 @@ export default function App() {
     };
   }, [debouncedQuery]);
 
-  // Load More shows handler (pagination)
   const handleLoadMore = async () => {
     if (loadingMore || !hasMore || debouncedQuery) return;
     setLoadingMore(true);
@@ -146,14 +132,13 @@ export default function App() {
         setAllShows((prev) => [...prev, ...moreShows]);
         setCurrentPage(nextPage);
       }
-    } catch (err) {
+    } catch {
       showToast('Could not load more shows.', 'error');
     } finally {
       setLoadingMore(false);
     }
   };
 
-  // Filter & Sort Logic
   const filteredShows = useMemo(() => {
     const sourceList = debouncedQuery ? searchResults : allShows;
     if (!sourceList) return [];
@@ -161,21 +146,18 @@ export default function App() {
     let result = sourceList.filter((show) => {
       if (!show) return false;
 
-      // Genre filter
       if (selectedGenre !== 'All Genres') {
         if (!show.genres || !show.genres.includes(selectedGenre)) {
           return false;
         }
       }
 
-      // Status filter
       if (selectedStatus !== 'All') {
         if (!show.status || show.status.toLowerCase() !== selectedStatus.toLowerCase()) {
           return false;
         }
       }
 
-      // Rating filter
       if (minRating !== 'All') {
         const threshold = parseFloat(minRating);
         const rating = show.rating?.average;
@@ -187,7 +169,6 @@ export default function App() {
       return true;
     });
 
-    // Sorting
     result.sort((a, b) => {
       switch (sortBy) {
         case 'rating-desc': {
@@ -217,7 +198,6 @@ export default function App() {
     return result;
   }, [debouncedQuery, searchResults, allShows, selectedGenre, selectedStatus, minRating, sortBy]);
 
-  // Active filter count
   const activeFilterCount = useMemo(() => {
     let count = 0;
     if (selectedGenre !== 'All Genres') count++;
@@ -227,7 +207,6 @@ export default function App() {
     return count;
   }, [selectedGenre, selectedStatus, minRating, sortBy]);
 
-  // Reset all filters
   const handleResetFilters = () => {
     setSelectedGenre('All Genres');
     setSelectedStatus('All');
@@ -241,7 +220,6 @@ export default function App() {
     handleResetFilters();
   };
 
-  // Quick Action Handlers
   const handleHeroQuickSearch = (query) => {
     setSearchQuery(query);
     setActivePage('movies');
@@ -261,14 +239,12 @@ export default function App() {
 
   return (
     <div className="app-wrapper">
-      {/* Toast Alert */}
       <Toast
         message={toast.message}
         type={toast.type}
         onClose={() => setToast({ message: '', type: 'info' })}
       />
 
-      {/* Navigation Bar */}
       <Navbar
         activePage={activePage}
         setActivePage={setActivePage}
@@ -276,7 +252,6 @@ export default function App() {
         onSelectGenre={handleSelectGenreFromHome}
       />
 
-      {/* Main Content Area */}
       <main className="main-content">
         {activePage === 'home' && (
           <div className="home-view">
@@ -309,7 +284,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Prominent Search Bar */}
             <SearchBar
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
@@ -318,7 +292,6 @@ export default function App() {
               isSearching={loading && Boolean(debouncedQuery)}
             />
 
-            {/* Dynamic Filter Controls */}
             <FilterBar
               selectedGenre={selectedGenre}
               setSelectedGenre={setSelectedGenre}
@@ -332,7 +305,6 @@ export default function App() {
               activeFilterCount={activeFilterCount}
             />
 
-            {/* Responsive Movie Grid */}
             <MovieGrid
               movies={filteredShows}
               loading={loading}
@@ -374,7 +346,6 @@ export default function App() {
         )}
       </main>
 
-      {/* Interactive Movie Details Modal */}
       {selectedMovie && (
         <MovieModal
           movie={selectedMovie}
@@ -384,7 +355,6 @@ export default function App() {
         />
       )}
 
-      {/* Footer */}
       <Footer onNavigate={setActivePage} />
     </div>
   );

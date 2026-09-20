@@ -5,7 +5,6 @@ export default function MovieModal({ movie, onClose, isFavorite, onToggleFavorit
   const [details, setDetails] = useState(null);
   const [loadingDetails, setLoadingDetails] = useState(true);
 
-  // Fetch full details with cast when modal opens
   useEffect(() => {
     if (!movie?.id) return;
     let isMounted = true;
@@ -19,7 +18,7 @@ export default function MovieModal({ movie, onClose, isFavorite, onToggleFavorit
         }
       })
       .catch((err) => {
-        console.warn('Could not fetch embedded details:', err);
+        console.error('Error fetching details:', err);
         if (isMounted) {
           setDetails(movie);
           setLoadingDetails(false);
@@ -31,7 +30,6 @@ export default function MovieModal({ movie, onClose, isFavorite, onToggleFavorit
     };
   }, [movie]);
 
-  // Lock body scroll and handle Escape key
   useEffect(() => {
     document.body.classList.add('modal-open');
 
@@ -68,24 +66,21 @@ export default function MovieModal({ movie, onClose, isFavorite, onToggleFavorit
       }}
       role="dialog"
       aria-modal="true"
-      aria-labelledby="modal-movie-title"
     >
       <div className="modal-container">
-        {/* Top Header Close Button */}
         <button
           className="modal-close-icon-btn"
           onClick={onClose}
-          aria-label="Close modal"
+          aria-label="Close"
           title="Close (Esc)"
         >
           ✕
         </button>
 
-        {/* Hero Backdrop Banner */}
         <div className="modal-hero-banner">
           <img
             src={backdropUrl}
-            alt={`${currentShow.name} Backdrop`}
+            alt={currentShow.name}
             className="modal-backdrop-img"
             onError={(e) => {
               e.target.onerror = null;
@@ -94,21 +89,16 @@ export default function MovieModal({ movie, onClose, isFavorite, onToggleFavorit
           />
           <div className="modal-backdrop-gradient"></div>
 
-          {/* Floating Action Button inside hero */}
           <button
             type="button"
             className={`modal-favorite-btn ${isFavorite ? 'active' : ''}`}
             onClick={() => onToggleFavorite(currentShow)}
-            title={isFavorite ? 'Remove from Watchlist' : 'Add to Watchlist'}
-            aria-label="Toggle Watchlist"
           >
             <span>{isFavorite ? '❤️ In Watchlist' : '🤍 Add to Watchlist'}</span>
           </button>
         </div>
 
-        {/* Modal Main Body Content */}
         <div className="modal-body-content">
-          {/* Main Info Header */}
           <div className="modal-info-header">
             <div className="modal-poster-col">
               <img
@@ -119,33 +109,28 @@ export default function MovieModal({ movie, onClose, isFavorite, onToggleFavorit
             </div>
 
             <div className="modal-main-meta">
-              <h2 id="modal-movie-title" className="modal-title">
+              <h2 className="modal-title">
                 {currentShow.name}
               </h2>
 
-              {/* Badges Row */}
               <div className="modal-badges-row">
-                {/* Rating Badge */}
                 <div className="modal-rating-badge">
                   <span className="star">⭐</span>
                   <span className="score">{rating}</span>
                   <span className="out-of">/ 10</span>
                 </div>
 
-                {/* Release Date */}
                 <div className="modal-meta-pill">
                   <span>📅 Premiered:</span>
                   <strong>{currentShow.premiered || releaseYear}</strong>
                 </div>
 
-                {/* Status */}
                 {currentShow.status && (
                   <div className={`modal-status-badge ${currentShow.status.toLowerCase()}`}>
                     ● {currentShow.status}
                   </div>
                 )}
 
-                {/* Runtime */}
                 {currentShow.runtime && (
                   <div className="modal-meta-pill">
                     <span>⏱️</span>
@@ -154,7 +139,6 @@ export default function MovieModal({ movie, onClose, isFavorite, onToggleFavorit
                 )}
               </div>
 
-              {/* Genres Pills */}
               {currentShow.genres && currentShow.genres.length > 0 && (
                 <div className="modal-genres-list">
                   {currentShow.genres.map((genre) => (
@@ -165,7 +149,6 @@ export default function MovieModal({ movie, onClose, isFavorite, onToggleFavorit
                 </div>
               )}
 
-              {/* Extra Metadata Grid */}
               <div className="modal-extra-meta-grid">
                 {currentShow.language && (
                   <div className="meta-item">
@@ -200,7 +183,6 @@ export default function MovieModal({ movie, onClose, isFavorite, onToggleFavorit
             </div>
           </div>
 
-          {/* Overview / Summary Section */}
           <div className="modal-section">
             <h3 className="modal-section-title">
               <span className="title-bar"></span> Overview
@@ -212,7 +194,6 @@ export default function MovieModal({ movie, onClose, isFavorite, onToggleFavorit
             </div>
           </div>
 
-          {/* Cast & Characters Section */}
           {castList.length > 0 && (
             <div className="modal-section">
               <h3 className="modal-section-title">
@@ -244,7 +225,6 @@ export default function MovieModal({ movie, onClose, isFavorite, onToggleFavorit
             </div>
           )}
 
-          {/* External Links Bar */}
           <div className="modal-links-row">
             {currentShow.officialSite && (
               <a
@@ -279,7 +259,6 @@ export default function MovieModal({ movie, onClose, isFavorite, onToggleFavorit
           </div>
         </div>
 
-        {/* Modal Bottom Footer Action */}
         <div className="modal-footer-bar">
           <button className="btn btn-outline modal-bottom-close-btn" onClick={onClose}>
             ✕ Close

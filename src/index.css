@@ -1,9 +1,4 @@
-/* ==========================================================================
-   CinePulse Movie Explorer - Design System & Global Styles
-   ========================================================================== */
-
 :root {
-  /* Color Palette - Dark Obsidian Cinema Theme */
   --bg-primary: #07090e;
   --bg-secondary: #0d121f;
   --bg-card: rgba(18, 24, 38, 0.75);
@@ -13,13 +8,11 @@
   --bg-glass-strong: rgba(12, 17, 29, 0.85);
   --bg-input: rgba(18, 24, 40, 0.85);
 
-  /* Borders & Highlights */
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-medium: rgba(255, 255, 255, 0.16);
   --border-glow: rgba(0, 242, 254, 0.35);
   --border-accent: rgba(121, 40, 202, 0.4);
 
-  /* Primary & Accent Gradients */
   --accent-cyan: #00f2fe;
   --accent-blue: #4facfe;
   --accent-purple: #7928ca;
@@ -35,20 +28,17 @@
   --gradient-hero-overlay: linear-gradient(180deg, rgba(7, 9, 14, 0.4) 0%, rgba(7, 9, 14, 0.85) 70%, #07090e 100%);
   --gradient-poster-overlay: linear-gradient(180deg, transparent 40%, rgba(7, 9, 14, 0.95) 100%);
 
-  /* Typography Colors */
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
   --text-inverse: #07090e;
 
-  /* Shadows */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
   --shadow-glow-cyan: 0 0 25px rgba(0, 242, 254, 0.3);
   --shadow-glow-purple: 0 0 30px rgba(121, 40, 202, 0.35);
 
-  /* Layout & Sizing */
   --max-width: 1320px;
   --header-height: 74px;
   --radius-sm: 8px;
@@ -56,19 +46,13 @@
   --radius-lg: 20px;
   --radius-full: 9999px;
 
-  /* Typography */
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Transitions */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-/* ==========================================================================
-   CSS Reset & Base Rules
-   ========================================================================== */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -93,7 +77,6 @@ body {
   position: relative;
 }
 
-/* Ambient Background Glow */
 body::before {
   content: '';
   position: fixed;
@@ -143,10 +126,6 @@ a {
   text-decoration: none;
 }
 
-/* ==========================================================================
-   Custom Scrollbar
-   ========================================================================== */
-
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -165,10 +144,6 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 242, 254, 0.4);
 }
-
-/* ==========================================================================
-   Global Animations
-   ========================================================================== */
 
 @keyframes fadeIn {
   from {
@@ -219,7 +194,6 @@ a {
   }
 }
 
-/* Skeleton Loading utility */
 .skeleton {
   background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.04) 75%);
   background-size: 200% 100%;
@@ -227,7 +201,6 @@ a {
   border-radius: var(--radius-sm);
 }
 
-/* Modal Open Body Lock */
 body.modal-open {
   overflow: hidden;
   padding-right: 10px;

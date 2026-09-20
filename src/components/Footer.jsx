@@ -8,7 +8,6 @@ export default function Footer({ onNavigate }) {
   return (
     <footer className="footer-container">
       <div className="footer-inner">
-        {/* Main Brand Column */}
         <div className="footer-col brand-col">
           <div className="footer-brand" onClick={() => onNavigate('home')}>
             <span className="brand-icon">🎬</span>
@@ -17,39 +16,37 @@ export default function Footer({ onNavigate }) {
             </span>
           </div>
           <p className="footer-tagline">
-            Your premium gateway to television and cinema. Explore top-rated series, read verified reviews, and track your favorite shows seamlessly.
+            Your gateway to television and cinema. Explore top-rated series, read reviews, and track your favorite shows.
           </p>
           <div className="footer-api-credit">
-            <span>Powered by free community data from </span>
+            <span>Data provided by </span>
             <a href="https://www.tvmaze.com/api" target="_blank" rel="noopener noreferrer" className="api-link">
               TVMaze API ↗
             </a>
           </div>
         </div>
 
-        {/* Quick Links Column */}
         <div className="footer-col">
           <h4 className="footer-heading">Navigation</h4>
           <ul className="footer-links">
             <li>
               <button className="footer-link-btn" onClick={() => onNavigate('home')}>
-                Home Showcase
+                Home
               </button>
             </li>
             <li>
               <button className="footer-link-btn" onClick={() => onNavigate('movies')}>
-                Explore Movies & Shows
+                Explore Movies
               </button>
             </li>
             <li>
               <button className="footer-link-btn" onClick={() => onNavigate('favorites')}>
-                My Watchlist
+                Watchlist
               </button>
             </li>
           </ul>
         </div>
 
-        {/* Categories Column */}
         <div className="footer-col">
           <h4 className="footer-heading">Categories</h4>
           <ul className="footer-links">
@@ -60,14 +57,13 @@ export default function Footer({ onNavigate }) {
           </ul>
         </div>
 
-        {/* Connect & Top Column */}
         <div className="footer-col">
           <h4 className="footer-heading">Connect</h4>
           <div className="footer-socials">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-pill" title="GitHub">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-pill">
               <span>💻 GitHub</span>
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-pill" title="Twitter / X">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-pill">
               <span>🐦 Twitter</span>
             </a>
           </div>
@@ -79,7 +75,7 @@ export default function Footer({ onNavigate }) {
 
       <div className="footer-bottom">
         <p className="copyright-text">
-          © 2026 MovieExplorer. Built with React & Plain CSS. All rights reserved.
+          © 2026 MovieExplorer. Built with React & CSS.
         </p>
       </div>
     </footer>

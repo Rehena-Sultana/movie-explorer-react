@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Navbar({ activePage, setActivePage, favoritesCount, onSelectGenre }) {
+export default function Navbar({ activePage, setActivePage, favoritesCount }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleNav = (page) => {
@@ -12,7 +12,6 @@ export default function Navbar({ activePage, setActivePage, favoritesCount, onSe
   return (
     <header className="navbar-container">
       <div className="navbar-inner">
-        {/* Brand / Logo */}
         <button 
           className="brand-logo" 
           onClick={() => handleNav('home')} 
@@ -24,8 +23,7 @@ export default function Navbar({ activePage, setActivePage, favoritesCount, onSe
           </span>
         </button>
 
-        {/* Desktop Navigation */}
-        <nav className="nav-links" aria-label="Main Navigation">
+        <nav className="nav-links">
           <button
             className={`nav-link ${activePage === 'home' ? 'active' : ''}`}
             onClick={() => handleNav('home')}
@@ -44,14 +42,13 @@ export default function Navbar({ activePage, setActivePage, favoritesCount, onSe
           >
             <span>Watchlist</span>
             {favoritesCount > 0 && (
-              <span className="nav-badge" aria-label={`${favoritesCount} favorites`}>
+              <span className="nav-badge">
                 {favoritesCount}
               </span>
             )}
           </button>
         </nav>
 
-        {/* Prominent CTA to Movie Listing Page */}
         <div className="nav-actions">
           <button
             id="nav-explore-btn"
@@ -62,12 +59,10 @@ export default function Navbar({ activePage, setActivePage, favoritesCount, onSe
             <span className="btn-arrow">→</span>
           </button>
 
-          {/* Mobile Menu Toggle Button */}
           <button
             className="mobile-toggle-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Navigation Menu"
-            aria-expanded={mobileMenuOpen}
           >
             <span className="hamburger-line"></span>
             <span className="hamburger-line"></span>
@@ -76,7 +71,6 @@ export default function Navbar({ activePage, setActivePage, favoritesCount, onSe
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
         <div className="mobile-menu-drawer">
           <button

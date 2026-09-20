@@ -13,7 +13,7 @@ export default function HeroBanner({ onExploreClick, onQuickSearch }) {
   };
 
   return (
-    <section className="hero-banner" aria-label="Hero Showcase">
+    <section className="hero-banner">
       <div className="hero-backdrop-glow"></div>
       
       <div className="hero-content">
@@ -30,7 +30,6 @@ export default function HeroBanner({ onExploreClick, onQuickSearch }) {
           Explore and discover your favorite movies, top-rated TV series, and cult classics from around the world with real-time ratings, comprehensive cast info, and detailed summaries.
         </p>
 
-        {/* Quick Search on Hero */}
         <form className="hero-search-form" onSubmit={handleSearchSubmit}>
           <div className="hero-search-input-wrapper">
             <span className="hero-search-icon">🔍</span>
@@ -41,7 +40,6 @@ export default function HeroBanner({ onExploreClick, onQuickSearch }) {
               placeholder="Search by title (e.g., Breaking Bad, Spider-Man, Stranger Things)..."
               value={heroSearch}
               onChange={(e) => setHeroSearch(e.target.value)}
-              aria-label="Quick search movies"
             />
           </div>
           <button type="submit" id="hero-explore-cta" className="btn btn-primary hero-submit-btn">
@@ -50,7 +48,6 @@ export default function HeroBanner({ onExploreClick, onQuickSearch }) {
           </button>
         </form>
 
-        {/* Hero Features / Key Stat Badges */}
         <div className="hero-stats">
           <div className="hero-stat-card">
             <span className="stat-number">50K+</span>

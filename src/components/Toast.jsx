@@ -23,10 +23,10 @@ export default function Toast({ message, type = 'info', onClose, duration = 3000
   };
 
   return (
-    <div className={`toast-notification toast-${type}`} role="status" aria-live="polite">
+    <div className={`toast-notification toast-${type}`} role="status">
       <span className="toast-icon">{getIcon()}</span>
       <span className="toast-message">{message}</span>
-      <button className="toast-close" onClick={onClose} aria-label="Close notification">
+      <button className="toast-close" onClick={onClose} aria-label="Close">
         ✕
       </button>
     </div>

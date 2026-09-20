@@ -23,8 +23,7 @@ export default function FeaturedSection({
 }) {
   return (
     <div className="home-sections-wrapper">
-      {/* Trending Spotlight Carousel/Grid */}
-      <section className="section-container" aria-label="Trending Spotlight">
+      <section className="section-container">
         <div className="section-header">
           <div>
             <div className="section-tag">🔥 HOT RIGHT NOW</div>
@@ -57,8 +56,7 @@ export default function FeaturedSection({
         )}
       </section>
 
-      {/* Genre Exploration Section */}
-      <section className="section-container" aria-label="Explore by Genre">
+      <section className="section-container">
         <div className="section-header">
           <div>
             <div className="section-tag">🏷️ DISCOVERY</div>
@@ -86,8 +84,7 @@ export default function FeaturedSection({
         </div>
       </section>
 
-      {/* Features Showcase / Value Proposition */}
-      <section className="section-container why-us-section" aria-label="Why Movie Explorer">
+      <section className="section-container why-us-section">
         <div className="why-us-grid">
           <div className="why-us-card">
             <div className="why-us-icon-wrapper cyan">⚡</div>

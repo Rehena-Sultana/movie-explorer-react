@@ -47,11 +47,11 @@ export default function MovieGrid({
         <h3 className="state-title">No Shows Found</h3>
         <p className="state-message">
           {searchQuery
-            ? `No movies or series matched your search for "${searchQuery}". Try a different keyword or reset your filters.`
-            : 'No titles match the currently selected filters.'}
+            ? `No shows matched "${searchQuery}". Try searching for something else or reset filters.`
+            : 'No titles match the selected filters.'}
         </p>
         <button className="btn btn-primary" onClick={onClearFilters}>
-          Clear All Filters & Reset
+          Reset All Filters
         </button>
       </div>
     );
@@ -71,7 +71,6 @@ export default function MovieGrid({
         ))}
       </div>
 
-      {/* Load More Button for paginated all-shows browsing */}
       {hasMore && !searchQuery && (
         <div className="load-more-wrapper">
           <button
@@ -82,7 +81,7 @@ export default function MovieGrid({
             {loadingMore ? (
               <>
                 <span className="search-spinner small"></span>
-                <span>Loading More Shows...</span>
+                <span>Loading...</span>
               </>
             ) : (
               <>

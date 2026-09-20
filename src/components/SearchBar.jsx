@@ -4,7 +4,7 @@ export default function SearchBar({ searchQuery, setSearchQuery, onClear, totalR
   return (
     <div className="search-bar-container">
       <div className="search-input-wrapper">
-        <span className="search-icon" aria-hidden="true">
+        <span className="search-icon">
           {isSearching ? <span className="search-spinner"></span> : '🔍'}
         </span>
         <input
@@ -15,14 +15,12 @@ export default function SearchBar({ searchQuery, setSearchQuery, onClear, totalR
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           autoComplete="off"
-          aria-label="Search movies and shows"
         />
         {searchQuery && (
           <button
             className="search-clear-btn"
             onClick={onClear}
-            title="Clear search"
-            aria-label="Clear search query"
+            title="Clear"
           >
             ✕
           </button>
@@ -33,7 +31,7 @@ export default function SearchBar({ searchQuery, setSearchQuery, onClear, totalR
         <div className="search-status-bar">
           <span className="search-status-text">
             Showing results for <strong className="query-highlight">"{searchQuery}"</strong>
-            {totalResults !== undefined && ` (${totalResults} titles found)`}
+            {totalResults !== undefined && ` (${totalResults} found)`}
           </span>
           <button className="search-reset-link" onClick={onClear}>
             Clear Search

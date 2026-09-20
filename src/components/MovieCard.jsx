@@ -10,8 +10,7 @@ export default function MovieCard({ show, onSelectMovie, isFavorite, onToggleFav
   const genres = show.genres && show.genres.length > 0 ? show.genres.slice(0, 2) : ['General'];
 
   return (
-    <article className="movie-card" data-testid={`movie-card-${show.id}`}>
-      {/* Poster Image Container */}
+    <article className="movie-card">
       <div className="card-poster-wrapper" onClick={() => onSelectMovie(show)}>
         <img
           src={posterUrl}
@@ -25,7 +24,6 @@ export default function MovieCard({ show, onSelectMovie, isFavorite, onToggleFav
         />
         <div className="card-poster-overlay"></div>
 
-        {/* Favorite / Watchlist Button */}
         <button
           type="button"
           className={`card-favorite-btn ${isFavorite ? 'active' : ''}`}
@@ -34,26 +32,21 @@ export default function MovieCard({ show, onSelectMovie, isFavorite, onToggleFav
             onToggleFavorite(show);
           }}
           title={isFavorite ? 'Remove from Watchlist' : 'Add to Watchlist'}
-          aria-label={isFavorite ? `Remove ${show.name} from Watchlist` : `Add ${show.name} to Watchlist`}
         >
           {isFavorite ? '❤️' : '🤍'}
         </button>
 
-        {/* Rating Floating Badge */}
         <div className="card-rating-badge">
           <span className="rating-star">⭐</span>
           <span className="rating-value">{rating}</span>
         </div>
 
-        {/* Quick Click Hint Overlay on Hover */}
         <div className="card-quick-view">
           <span>Quick View 🔍</span>
         </div>
       </div>
 
-      {/* Card Content Information */}
       <div className="card-content">
-        {/* Genre Tags */}
         <div className="card-genres">
           {genres.map((genre) => (
             <span key={genre} className="genre-pill">
@@ -67,12 +60,10 @@ export default function MovieCard({ show, onSelectMovie, isFavorite, onToggleFav
           )}
         </div>
 
-        {/* Title */}
         <h3 className="card-title" onClick={() => onSelectMovie(show)} title={show.name}>
           {show.name}
         </h3>
 
-        {/* Metadata: Rating & Year */}
         <div className="card-meta">
           <span className="meta-rating">
             <span className="meta-star">⭐</span> {rating}
@@ -83,12 +74,10 @@ export default function MovieCard({ show, onSelectMovie, isFavorite, onToggleFav
           </span>
         </div>
 
-        {/* CTA "See Details" Button */}
         <button
           type="button"
           className="btn btn-card-details"
           onClick={() => onSelectMovie(show)}
-          aria-label={`See details for ${show.name}`}
         >
           <span>See Details</span>
           <span className="btn-arrow">→</span>
