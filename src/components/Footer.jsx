@@ -18,12 +18,7 @@ export default function Footer({ onNavigate }) {
           <p className="footer-tagline">
             Your gateway to television and cinema. Explore top-rated series, read reviews, and track your favorite shows.
           </p>
-          <div className="footer-api-credit">
-            <span>Data provided by </span>
-            <a href="https://www.tvmaze.com/api" target="_blank" rel="noopener noreferrer" className="api-link">
-              TVMaze API ↗
-            </a>
-          </div>
+
         </div>
 
         <div className="footer-col">
